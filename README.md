@@ -12,13 +12,13 @@
 Although LLM-based conversational agents demonstrate strong fluency and coherence, they continue to exhibit behavioral errors, such as inconsistencies and factual inaccuracies. Detecting and mitigating these errors is critical for developing trustworthy systems. However, current response correction methods rely heavily on large language models (LLMs), which require information about the nature of an error or hints about its occurrence for accurate detection. This limits their ability to identify errors not defined in their instructions or covered by external tools, such as those arising from updates to the response-generation model or shifts in user behavior. 
 
 <p align="center">
-<img align="center" src="static/images/intro.png" alt="drawing" width="300"/></br>Figure 1: LLM-based response correction pipeline: (1) The response-generation model produces an initial response based on user input. (2) The feedback LLM, or in self-correcting systems the response-generation model itself, evaluates the candidate for errors, often using external tools. Recent work shows that LLMs require information about the nature of an error or hints about its occurrence for accurate detection. (3) The response-generation model refines its output according to the feedback.
+<img align="center" src="static/images/intro.png" alt="drawing" width="300"/></br>Figure 1: Feedback-guided response generation: (1) The response-generation model produces an initial response. (2) The feedback LLM, or in self-correcting systems the response-generation model itself, evaluates the response for errors, often using external tools. Recent work shows that LLMs require information about the nature of an error or hints about its occurrence for accurate detection. (3) The feedback LLM provides guidance (feedback) to the response-generation model to refine its output. (4) The final response is presented to the user.
 </p>
 
 In this work, we introduce __Automated Error Discovery__, a framework for detecting and defining behavioral errors in conversational AI, and propose __SEEED__ (<u>S</u>oft-clustering <u>E</u>xtended <u>E</u>ncoder-Based <u>E</u>rror <u>D</u>etection), an encoder-based alternative to LLMs for error detection. We enhance the Soft Nearest Neighbor Loss by amplifying distance weighting for negative samples and introduce __Label-Based Sample Ranking__ to select highly contrastive examples for better representation learning. 
 
 <p align="center">
-<img align="center" src="static/images/approach.png" alt="drawing" width="800"/></br>Figure 2: Schematic overview of SEEED, comprising three distinct components: Summary Generation, Error Detection, and Error Definition Generation (<i>e</i> denotes the identified behavioral error). Our training procedure is illustrated with a focus on the concept of Label-Based Sample Ranking.
+<img align="center" src="static/images/approach.png" alt="drawing" width="800"/></br>Figure 2: Schematic overview of SEEED, comprising three components: Summary Generation, Error Detection, and Error Definition Generation (e denotes the identified error type). In practical applications (see Figure 1 for an example), the feedback LLM may be used for generating summaries and error definitions (if necessary) to reduce deployment costs, as both are summarization tasks typically covered during LLM pre-training. Newly defined error types are added to the pool of known types, and their dialogue contexts could be used to enhance error detection.
 </p>
 
 SEEED outperforms adapted baselines across multiple error-annotated dialogue datasets, improving the accuracy for detecting novel behavioral errors by up to 8 points and demonstrating strong generalization to unknown intent detection.
@@ -74,14 +74,21 @@ $$e = \mathcal{H}(T, W_T), \text{ where } e \in E \text{ and } T \in C$$
 $\mathcal{H}$ must not access any data in $E^{U}$ during training.
 
 ### Error Definition Generation
-When $e \notin E^{K}$, the task is to generate a definition $d$ conditioned on the identified set of related dialogue contexts $C_{e} \subseteq C^{U}$.\footnote{In practical implementations, this new data can be used to enhance $\mathcal{H}$. To avoid the emergence of an overly granular set of behavioral errors, we suggest applying a threshold to $\left |C_e \right |$.}
+When $e \notin E^{K}$, the task is to generate a definition $d$ conditioned on the identified set of related dialogue contexts $C_{e} \subseteq C^{U}$.
+
+In practical implementations, this new data can be used to enhance $\mathcal{H}$. To avoid the emergence of an overly granular set of behavioral errors, we suggest applying a threshold to $\left |C_e \right |$.
 
 ## Citation
 
 Please reference our work as follows:
 
 ```
-
+@article{petrak2025towards,
+  title={Towards Automated Error Detection: A Study in Conversational AI},
+  author={Petrak, Dominic and Tran, Thy and Gurevych, Iryna},
+  journal={arXiv preprint arXiv:2509.10150},
+  year={2025}
+}
 ```
 
 ## Contact Persons
