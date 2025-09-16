@@ -1,5 +1,5 @@
 # Towards Automated Error Discovery: A Study in Conversational AI
-[![Arxiv](https://img.shields.io/badge/Arxiv-2509.10150-red?style=flat-square&logo=arxiv&logoColor=white)](https://arxiv.org)
+[![Arxiv](https://img.shields.io/badge/Arxiv-2509.10833-red?style=flat-square&logo=arxiv&logoColor=white)](https://arxiv.org)
 [![License](https://img.shields.io/github/license/UKPLab/ukp-project-template)](https://opensource.org/licenses/Apache-2.0)
 [![Python Versions](https://img.shields.io/badge/Python-3.12-blue.svg?style=flat&logo=python&logoColor=white)](https://www.python.org/)
 
@@ -86,8 +86,9 @@ Please reference our work as follows:
 @article{petrak2025towards,
   title={Towards Automated Error Detection: A Study in Conversational AI},
   author={Petrak, Dominic and Tran, Thy and Gurevych, Iryna},
-  journal={arXiv preprint arXiv:2509.10150},
-  year={2025}
+  journal={arXiv preprint arXiv:2509.10833},
+  year={2025},
+  url={http://arxiv.org/abs/2509.10833}
 }
 ```
 
